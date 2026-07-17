@@ -122,7 +122,6 @@ class Cipher:
     # resulting ciphertext with the original message length.
     ##########################################################################
     def encrypt(self, plaintext, password):
-        ciphertext = plaintext
 
         # Get the number of columns according to the password
         # Then use the no. of columns to determine number of rows
@@ -184,10 +183,11 @@ class Cipher:
         key_order = self.create_key_order(password)
 
         # Build the matrix with the number_of_columns and number_of_rows
-        matrix = [
-            [""] * number_of_columns
-            for _ in range(number_of_rows)
-        ]
+        matrix = []
+
+        for _ in range(number_of_rows):
+            empty_row = [""] * number_of_columns
+            matrix.append(empty_row)
 
         # Using the key_order populate the matrix with the ciphertext
         # characters into columns in the order the password dictates.
